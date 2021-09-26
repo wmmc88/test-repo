@@ -1,0 +1,25 @@
+name: Windows-Test
+
+on:
+  push:
+
+env: 
+  ROS_DISTRO: foxy
+
+jobs:
+  windows-amd64-build-and-test: # No rostooling/setup-ros-docker docker images available for Windows.
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup ROS
+        uses: ros-tooling/setup-ros@v0.2
+        with:
+          required-ros-distributions: ${{ env.ROS_DISTRO }}
+
+      - name: Build ROS2 Packages and Run Tests
+        uses: ros-tooling/action-ros-ci@v0.2
+        with:
+          target-ros2-distro: ${{ env.ROS_DISTRO }}
