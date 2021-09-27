@@ -20,6 +20,6 @@ jobs:
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Build ROS2 Packages and Run Tests
-        uses: wmmc88/action-ros-ci@e2977b2c29fa5af99c0c56927c0e535aba52ec13
+        uses: wmmc88/action-ros-ci@89d2801c41ec3fbd1bf4b0c3239dc1a44144cc9c
         with:
           target-ros2-distro: ${{ env.ROS_DISTRO }}
