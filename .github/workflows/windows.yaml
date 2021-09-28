@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup ROS
-        uses: ros-tooling/setup-ros@v0.2
+        uses: ros-tooling/setup-ros@c4e8165ee5518c04dc4588bff7c1028ccf563e6f # Includes latest Foxy Windows release (Patch 5)
         with:
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: Build ROS2 Packages and Run Tests
-        uses: wmmc88/action-ros-ci@89d2801c41ec3fbd1bf4b0c3239dc1a44144cc9c
+        uses: wmmc88/action-ros-ci@wmmc88/fix-windows-builds
         with:
           target-ros2-distro: ${{ env.ROS_DISTRO }}
