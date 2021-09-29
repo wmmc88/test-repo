@@ -16,13 +16,13 @@ jobs:
 
       - name: Setup ROS
         # uses: ros-tooling/setup-ros@c4e8165ee5518c04dc4588bff7c1028ccf563e6f # Includes latest Foxy Windows release (Patch 5)
-        uses: wmmc88/setup-ros@openssl-windows
+        uses: wmmc88/setup-ros@install-correct-python-version-windows # includes openssl fix too
         with:
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
       - name: TEST
         run: |
-          dir C:/dev/foxy/ros2-windows/Scripts
+          where colcon
           C:/dev/foxy/ros2-windows/Scripts/ament_cppcheck.exe
 
       - name: Build ROS2 Packages and Run Tests
