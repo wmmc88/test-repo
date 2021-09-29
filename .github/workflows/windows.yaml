@@ -20,7 +20,17 @@ jobs:
         with:
           required-ros-distributions: ${{ env.ROS_DISTRO }}
 
+      - name: TEST
+        run: |
+          dir C:/dev/foxy/ros2-windows/Scripts
+          C:/dev/foxy/ros2-windows/Scripts/ament_cppcheck.exe
+
       - name: Build ROS2 Packages and Run Tests
         uses: wmmc88/action-ros-ci@fix-windows-builds-2
         with:
           target-ros2-distro: ${{ env.ROS_DISTRO }}
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          sudo: false
