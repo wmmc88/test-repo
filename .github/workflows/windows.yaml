@@ -22,10 +22,10 @@ jobs:
       - name: TEST
         run: |
           $env:PATH -split ';'
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: false
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   with:
+      #     sudo: false
       - name: Build ROS2 Packages and Run Tests
         uses: wmmc88/action-ros-ci@fix-windows-builds-2
         with:
