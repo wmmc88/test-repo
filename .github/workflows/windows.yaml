@@ -8,7 +8,10 @@ env:
 
 jobs:
   windows-amd64-build-and-test: # No rostooling/setup-ros-docker docker images available for Windows.
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
 
     steps:
       - name: Checkout Repository
@@ -19,19 +22,7 @@ jobs:
         # uses: wmmc88/setup-ros@wmmc88/install-correct-python-version-windows # includes openssl fix too
         with:
           required-ros-distributions: ${{ env.ROS_DISTRO }}
-      - name: TEST
-        run: |
-          $env:PATH -split ';'
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
-      #   with:
-      #     sudo: false
       - name: Build ROS2 Packages and Run Tests
         uses: wmmc88/action-ros-ci@wmmc88/fix-windows-builds--test-branch
         with:
           target-ros2-distro: ${{ env.ROS_DISTRO }}
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: false
